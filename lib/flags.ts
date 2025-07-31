@@ -6,7 +6,9 @@ export const flagPrecomputed = flag<boolean>({
   identify({ headers }) {
     const precomputedCookie = headers.get("x-precomputed");
     console.log("==> [flagPrecomputed identify]:", precomputedCookie);
-    return { precomputed: precomputedCookie && precomputedCookie === "true" };
+    return {
+      precomputed: precomputedCookie ? precomputedCookie === "true" : false,
+    };
   },
   decide({ entities }) {
     console.log("==> [flagPrecomputed decide] entities:", entities);
@@ -20,7 +22,9 @@ export const flagDynamic = flag<boolean>({
   identify({ headers }) {
     const precomputedCookie = headers.get("x-dynamic");
     console.log("==> [flagDynamic identify]:", precomputedCookie);
-    return { precomputed: precomputedCookie && precomputedCookie === "true" };
+    return {
+      precomputed: precomputedCookie ? precomputedCookie === "true" : false,
+    };
   },
   decide({ entities }) {
     console.log("==> [flagDynamic decide] entities:", entities);
